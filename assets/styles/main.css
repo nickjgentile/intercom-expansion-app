@@ -1,0 +1,108 @@
+/* GENERAL STYLES */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    font-family: proxima_novalight,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+h1, h2 {
+    color: white;
+}
+
+:focus {
+    border-color: #24d7e0;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(36,215,224,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(36,215,224,.6);
+}
+
+.btn-primary {
+    background-color: #2f4357;
+    border-color: #2f4357;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: rgba(47, 67, 87, 0.9);
+    border-color: #2f4357;
+}
+a {
+    color: white;
+}
+a:hover {
+    color: #24d7e0;
+    text-decoration: none;
+}a:focus {
+    color: #24d7e0;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+/* SPECIFIC STYLES */
+
+
+/*== HEADER STYLES ==*/
+#title {
+    text-align: center;
+}
+
+#header {
+    background-color: #2f4357;
+    color: white;
+    height: 100%;
+}#header li {
+    list-style: none;
+}header {
+    box-shadow: 0px 0px 4px black;
+    padding: 15px 0;
+    background-color: #2f4357;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.headRight {
+    text-align: right;
+}
+.row.align-items-center {
+    height: 100%;
+}
+.navbar span.icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: #fff;
+    margin-top: 4px;
+}.navbar:hover span {
+    background-color: #24d7e0;
+}.navbar {
+    background-color: #2f4357;
+    border: none;
+}button.navbar:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}span.headLogo:hover {
+    opacity: .7;
+    cursor: default;
+}i.fa.fa-cog {
+    color: white;
+}i.fa.fa-cog:hover {
+    color: #24d7e0;
+}button.navbar.right {
+    margin-left: auto;
+}li.list-group-item {
+    background-color: #2f4357;
+    color: white;
+    padding: 0.55rem 1.25rem;
+    border: none;
+}

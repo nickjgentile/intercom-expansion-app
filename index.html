@@ -1,15 +1,39 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Intercom Expansion App</title>
-  </head>
-  <body>
-    <h1>Expand Your Intercom Capabilities!</h1>
+<html ng-app="int">
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
-  </body>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Intercom Expansion App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/styles/main.css" />
+  <link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css">
+  <script src="assets/js/angular.min.js"></script>
+  <script src="assets/js/angular.route.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</head>
+
+<body>
+  <header ng-include="'header.html'"></header>
+
+  <form class="form">
+    <label for="createTicket">Create Conversation</label>
+    <input ng-model="name" type="text" class="form-control col-md-6" id="createTicket" placeholder="Enter Intercom UID">
+    <p ng-bind="name"></p>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <ul>
+    <li ng-repeat="user in users">
+      <h3>{{ user.name }}</h3>
+    </li>
+  </ul>
+
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</body>
+
 </html>

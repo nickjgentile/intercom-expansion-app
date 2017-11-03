@@ -1,4 +1,5 @@
 const electron = require('electron')
+const phone = require('./phone.js')
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
@@ -13,7 +14,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 600, height: 400, frame: false})
+  mainWindow = new BrowserWindow({width: 1000, height: 700, frame: true })
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -23,13 +24,10 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools({detach:true});
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     mainWindow = null
   })
 }
