@@ -16,19 +16,15 @@
 <body>
   <header ng-include="'header.html'"></header>
 
-  <form class="form">
+
+  <!-- <form class="form">
     <label for="createTicket">Create Conversation</label>
     <input ng-model="name" type="text" class="form-control col-md-6" id="createTicket" placeholder="Enter Intercom UID">
     <p ng-bind="name"></p>
 
     <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  <ul>
-    <li ng-repeat="user in users">
-      <h3>{{ user.name }}</h3>
-    </li>
-  </ul>
-
+  </form> -->
+  <main ng-view></main>
 
   <script>
     // You can also require other files to run in this process

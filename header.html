@@ -7,14 +7,14 @@
         </button>
         <span class="headLogo">Intercom Expansion</span>
         <button class="navbar right">
-            <a href="https://www.bing.com/" target="_blank"><i class="fa fa-cog fa-lg" aria-hidden="true"></i></a>
+            <a href="#!/settings"><i class="fa fa-cog fa-lg" aria-hidden="true"></i></a>
         </button>
     </div>
 </div>
 
 <ul class="list-group" ng-show="isHidden">
-    <li class="list-group-item"><a href="https://www.google.com/" target="_blank">Add a Ticket</a></li>
-    <li class="list-group-item"><a href="https://www.google.com/" target="_blank">Get a UserId</a></li>
-    <li class="list-group-item"><a href="https://www.google.com/" target="_blank">Review a User</a></li>
-    <li class="list-group-item"><a href="https://www.google.com/" target="_blank">Review a Company</a></li>
+    <li class="list-group-item"> <a href="#!/addticket" ng-click="isHidden = !isHidden">Add a Ticket</a></li>
+    <li class="list-group-item"> <a href="#!/userid" ng-click="isHidden = !isHidden">Get a UserId</a></li>
+    <li class="list-group-item"> <a href="#!/user" ng-click="isHidden = !isHidden">Review a User</a></li>
+    <li class="list-group-item"> <a href="#!/company" ng-click="isHidden = !isHidden">Review a Company</a></li>
 </ul>

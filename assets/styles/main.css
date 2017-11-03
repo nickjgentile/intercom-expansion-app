@@ -6,6 +6,10 @@
     -webkit-font-smoothing: antialiased;
 }
 
+.inline-block {
+    display: inline-block;
+}
+
 button {
     cursor: pointer;
 }
@@ -98,6 +102,10 @@ a:hover {
     color: white;
 }i.fa.fa-cog:hover {
     color: #24d7e0;
+}i.blue.fa.fa-cog {
+    color: #2f4357;
+}i.blue.fa.fa-cog:hover {
+    color: #24d7e0;
 }button.navbar.right {
     margin-left: auto;
 }li.list-group-item {
@@ -105,4 +113,75 @@ a:hover {
     color: white;
     padding: 0.55rem 1.25rem;
     border: none;
+}
+
+main h2 {
+    color: #24d7e0;
+}
+
+.tokenForm {
+    margin: 20px 0;
+}
+input {
+    margin-right: 3px;
+}
+
+
+
+/* ANIMATIONS */ 
+
+.list-group.ng-hide:not(.ng-hide-animate) {
+    height: 0;
+    transition: height 250ms ease;
+    visibility: hidden;
+    display: flex !important;
+}
+
+.list-group.ng-hide:not(.ng-hide-animate) a {
+    opacity: 0;
+}
+
+.list-group.ng-hide:not(.ng-hide-animate) li {
+    display: none;
+}
+
+ul.list-group {
+    height: 150px;
+    transition: height 250ms ease-in-out;
+}
+
+ul.list-group a {
+    font-size: inherit;
+    opacity: 1;
+}
+
+li.list-group-item {
+    opacity: 0;
+}
+
+li.list-group-item:nth-child(1) {
+    animation: fadeInBlock 250ms ease 180ms forwards;
+}
+
+li.list-group-item:nth-child(2) {
+    animation: fadeInBlock 250ms ease 210ms forwards;
+}
+
+li.list-group-item:nth-child(3) {
+    animation: fadeInBlock 250ms ease 240ms forwards;
+}
+
+li.list-group-item:nth-child(4) {
+    animation: fadeInBlock 250ms ease 270ms forwards;
+}
+
+
+@keyframes fadeInBlock {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
