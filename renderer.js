@@ -4,6 +4,11 @@
 
 const { ipcRenderer } = require('electron')
 
-window.createTick = function(num) {
-    ipcRenderer.send('CREATE_TICKET', num)
+window.createTick = function(idval) {
+    ipcRenderer.send('CREATE_TICKET', idval)
 }
+
+ipcRenderer.on('TICKET_CREATED', (res) => {
+    console.log(res)
+    console.log('ticket created')
+})

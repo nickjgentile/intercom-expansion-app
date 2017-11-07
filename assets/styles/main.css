@@ -22,6 +22,10 @@ h1, h2 {
     color: white;
 }
 
+strong {
+    color: #24d7e0;
+}
+
 :focus {
     border-color: #24d7e0;
     outline: 0;
@@ -53,6 +57,27 @@ a:hover {
 
 /* SPECIFIC STYLES */
 
+/* == LOADER */
+
+
+.loader {
+    text-align: center;
+    margin-top: 18%;
+    color: #24d7e0;
+}
+
+/* == LIST MAIN GROUP == */
+li.main.list-group-item {
+    padding: 5px 15px;
+    display: block;
+    opacity: 1;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+li.main.list-group-item:hover {
+    background: rgba(48, 68, 88, 0.81);
+}
 
 /*== HEADER STYLES ==*/
 #title {

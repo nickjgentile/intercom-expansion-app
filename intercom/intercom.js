@@ -2,27 +2,32 @@
 const Intercom = require('intercom-client');
 const electron = require('electron');
 const ipc = electron.ipcMain;
-const fs = require('fs');
-const path = require('path');
 
 var client = new Intercom.Client({ token: 'dG9rOjVlMzA5ZWRmXzY5ZjVfNGFkNV9iYzQ1XzlkOWJlMjEzZDQ3YzoxOjA=' });
 
+ipc.on('CREATE_TICKET', function (event, idval) {
 
-function createTicket(event, data) {
-    const ipcRenderer = event.sender;
-    
-    console.log('Hi');
-}
+    var message = {
+        from: {
+          type: "user",
+          user_id: idval
+        },
+        body: "This is a manually initiated message. Please add a note to the convesration to describe what was discussed."
+      }
 
-ipc.on('CREATE_TICKET', function (event, data) {
-    console.log(event)
-    console.log(data)
-    console.log('CREATING_TICKET')
-    console.log('CREATED_TICKET')
-    event.sender.send('TICKET_CREATED', 'Good Job')
+      console.log('message.idval = ' + idval + ' idval type = ' + typeof(idval))
+      
+    client.messages.create(message)
+        .then(function(m) {
+            console.log(m.body)
+            event.sender.send('TICKET_CREATED', m.body)
+        })
+        .catch(function(err) {
+            console.log(err)
+        })    
 })
 
 
-module.exports = {
-    createTicket
-};
+// module.exports = {
+//     createTicket
+// };

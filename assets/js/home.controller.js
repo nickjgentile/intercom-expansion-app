@@ -1,22 +1,29 @@
-const Intercom = require('intercom-client');
-
-var client = new Intercom.Client({ token: 'dG9rOjVlMzA5ZWRmXzY5ZjVfNGFkNV9iYzQ1XzlkOWJlMjEzZDQ3YzoxOjA=' });
 
 (function () {
+    const Intercom = require('intercom-client');
+    
+    var client = new Intercom.Client({ token: 'dG9rOjVlMzA5ZWRmXzY5ZjVfNGFkNV9iYzQ1XzlkOWJlMjEzZDQ3YzoxOjA=' });
+    
     angular
         .module('int')
         .controller('HomeController', ['$scope', '$http', function ($scope, $http) {
 
-        console.log($scope.users)
+            $scope.loading = true;
 
-        client.users.list()
-        .then(function(d){
-            
-            $scope.users=d.body.users;
-            console.log($scope.users)
-        })
-        .catch(function(err){
-            console.log(err);
-        })
-    }])
+            $scope.userExpand = function (e) {
+                console.log(e)
+            };
+
+            client
+                .users
+                .list()
+                .then(function (d) {
+                    $scope.users = d.body.users;
+                    $scope.loading = false;
+                    $scope.$apply();
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+        }])
 })();
