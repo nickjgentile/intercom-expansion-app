@@ -1,15 +1,24 @@
 <div id="settings" class="container">
-    <i class="blue fa fa-cog fa-2x""></i> <h3 class="inline-block" >Settings</h3>
+    <i class="blue fa fa-cog fa-2x"></i> <h3 class="inline-block ">Settings</h3>
 
-    <form class="tokenForm form-inline">
-        <label class="sr-only" for="token">
-            <strong>Your Token Here:</strong>
+    <form class="tokenForm form ">
+        <label for="token ">
+            <strong>Access Token:</strong>
         </label>
-        <input class="form-control" id="token" type="text" placeholder="Your Token Here" />
-        <button type="submit" class="btn btn-primary">Save</button>
+        <input class="form-control " id="token " type="text " placeholder="Your Token Here " />
+        <button type="submit " class="btn btn-primary ">Save</button>
     </form>
 
-    <button class="btn btn-danger">
-        <a href="#!/home">Back</a>
+    <form class="tokenForm form ">
+            <label for="token ">
+                <strong>Password:</strong>
+            </label>
+            <input class="form-control " id="token " type="text " placeholder="New Password " />
+            <input class="form-control " id="token " type="text " placeholder="Confirm New Password " />
+            <button type="submit " class="btn btn-primary ">Save</button>
+    </form>
+
+    <button id="back" onclick="history.back()" class="btn btn-danger ">
+        <!-- <a href="#!/home "> Back </a> -->Back
     </button>
 </div>

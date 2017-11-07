@@ -4,5 +4,6 @@
 
 const { ipcRenderer } = require('electron')
 
-// const config = ipcRenderer.sendSync('GET_USER_SYNC', '0')
-// console.log(config);
+window.createTick = function(num) {
+    ipcRenderer.send('CREATE_TICKET', num)
+}

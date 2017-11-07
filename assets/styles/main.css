@@ -116,7 +116,7 @@ a:hover {
 }
 
 main h2 {
-    color: #24d7e0;
+    color: #2f4357;
 }
 
 .tokenForm {
@@ -124,8 +124,15 @@ main h2 {
 }
 input {
     margin-right: 3px;
+    margin-bottom: 5px;
+}
+.userIdMain {
+    margin-top: 40px;
 }
 
+#getid {
+    margin-bottom: 5px;
+}
 
 
 /* ANIMATIONS */ 

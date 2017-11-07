@@ -1,1 +1,22 @@
-<h2> HOME </h2>
+<div class="container">
+
+    <h2> HOME </h2>
+
+
+    <label for="getid">Search for a User</label>
+    <input class="form-control" ng-model="search" type="text" />
+
+
+
+    <ul>
+        <li ng-repeat="user in users | filter: search">
+            <h3>{{ user.name }}</h3>
+            <ul>
+                <li>Email: {{ user.email }}</li>
+                <li>ID: {{user.user_id }} </li>
+                <li> {{ user.location_data.city_name || 'N/A' }}, {{ user.location_data.region_name || 'N/A'}} </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>

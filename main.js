@@ -1,5 +1,5 @@
 const electron = require('electron')
-const phone = require('./phone.js')
+const intercom = require('./intercom/intercom.js');
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
