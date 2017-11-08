@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 
     <h2> HOME </h2>
 
@@ -7,20 +7,53 @@
     <input class="form-control" id="searchbarmain" ng-model="search" type="text" />
 
     <div class="loader" ng-show="loading">
-            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>      
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
     </div>
 
 
 
     <ul class="main list-group">
-        <li class="main list-group-item" ng-repeat="user in users | filter: search" value={{user.user_id}} ng-click="userExpand(user.user_id)">
+        <li class="main list-group-item" ng-repeat="user in users | filter: search" ng-click="userExpand(user.user_id)">
             <h3>{{ user.name }}</h3>
             <ul>
-                <li class="sub"><strong>Email:</strong> {{ user.email }}</li>
-                <li class="sub"><strong>User ID:</strong> {{user.user_id }} </li>
-                <li class="sub"><strong>Location:</strong> {{ user.location_data.city_name || 'N/A' }}, {{ user.location_data.region_name || 'N/A'}} </li>
+                <li class="sub">
+                    <strong>Email:</strong> {{ user.email }}</li>
+                <li class="sub">
+                    <strong>User ID:</strong> {{user.user_id }} </li>
             </ul>
         </li>
     </ul>
+
+    <div class="modal" ng-show="modal">
+
+        <div class="modload" ng-show="modalload">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        </div>
+
+        <div class="modalContent" ng-show="contentReady">
+            <i class="fa fa-times-circle fa-lg" aria-hidden="true" ng-click="hideModal()"></i>
+            <ul class="list-group">
+                <div class="listhead">
+                    <h4 class="mod">{{selectedUser.name}}</h4>
+                    <img src="{{ selectedUser.avatar.image_url || imageplace }}" />
+                </div>
+                <li class="list-group-item">
+                    <strong>Email Address:</strong>&nbsp;{{ selectedUser.email }}</li>
+                <li class="list-group-item">
+                    <strong>ID:</strong>&nbsp;{{ selectedUser.user_id }}</li>
+                <li class="list-group-item">
+                    <strong>Last IP:</strong>&nbsp;{{ selectedUser.last_seen_ip }}</li>
+                <li class="list-group-item">
+                    <strong>User Agent:</strong>&nbsp;{{ selectedUser.user_agent_data }}</li>
+                <a target="_blank" href="https://www.google.com/maps?q={{selectedUser.location_data.latitude}},{{selectedUser.location_data.longitude}}">
+                    <li class="list-group-item userlink" >
+                    <strong>Location:</strong>&nbsp;{{ selectedUser.location_data.city_name || 'N/A' }}, {{ selectedUser.location_data.region_name
+                    || 'N/A' }}</li></a>
+                <li class="list-group-item">
+                    <strong>Sessions:</strong>&nbsp;{{ selectedUser.session_count }}
+                </li>
+            </ul>
+        </div>
+    </div>
 
 </div>

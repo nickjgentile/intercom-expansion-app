@@ -73,6 +73,8 @@ li.main.list-group-item {
     opacity: 1;
     border: 1px solid white;
     cursor: pointer;
+    border: 3px solid white;
+    border-radius: 5px;
 }
 
 li.main.list-group-item:hover {
@@ -88,6 +90,55 @@ li.main.list-group-item:hover {
 .successjson {
     color: #2f4357;
 }
+
+li.list-group-item.userlink:hover {
+    background: #24d6df;
+}.userlink:hover strong {
+    color: white;
+}
+
+/* == MODAL STYLES == */
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.63);
+}.modalContent {
+    background: #2f4357;
+    padding: 10px 20px 20px 20px;
+    border-radius: 8px;
+    width: 70%;
+    border: 1px solid #24d7e0;
+    box-shadow: 0px 0px 8px #24d7e0;
+    opacity: 0;
+    animation: fadeInBlock 700ms ease forwards;
+}.mod {
+    color: white;
+    text-align: center;
+}.modalContent img {
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    margin-bottom: 10px;
+    transition: 500ms ease;
+    border: 2px solid #fff;
+}.modalContent img:hover {
+    opacity: .7;
+    transition: 500ms ease;
+}.listhead {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.65);;
+}.modload {
+    position: fixed;
+    z-index: 2000;
+    color: #24d6df;
+}.modalContent li.list-group-item {
+    padding: 0.25rem;
+}
+
 /*== HEADER STYLES ==*/
 #title {
     text-align: center;
@@ -142,6 +193,11 @@ li.main.list-group-item:hover {
     color: #2f4357;
 }i.blue.fa.fa-cog:hover {
     color: #24d7e0;
+}.fa-times-circle{
+    color: white;
+    cursor: pointer;
+}.fa-times-circle:hover {
+    color: #24d7e0;
 }button.navbar.right {
     margin-left: auto;
     display: inline-block;
@@ -180,6 +236,10 @@ li.sub {
 
 
 /* ANIMATIONS */ 
+
+.modal.ng-hide {
+    transform: translateY(-50px);
+}
 
 .list-group.nav.ng-hide:not(.ng-hide-animate) {
     height: 0;
