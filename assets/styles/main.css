@@ -79,6 +79,15 @@ li.main.list-group-item:hover {
     background: rgba(48, 68, 88, 0.81);
 }
 
+.green {
+    color: green;
+}.red {
+    color: red;
+}
+
+.successjson {
+    color: #2f4357;
+}
 /*== HEADER STYLES ==*/
 #title {
     text-align: center;
@@ -116,6 +125,8 @@ li.main.list-group-item:hover {
 }.navbar {
     background-color: #2f4357;
     border: none;
+}.navbar a {
+    margin: 5px;
 }button.navbar:focus {
     border: none;
     outline: none;
@@ -133,6 +144,7 @@ li.main.list-group-item:hover {
     color: #24d7e0;
 }button.navbar.right {
     margin-left: auto;
+    display: inline-block;
 }li.list-group-item {
     background-color: #2f4357;
     color: white;
@@ -159,51 +171,58 @@ input {
     margin-bottom: 5px;
 }
 
+#searchbarmain {
+    margin-bottom: 20px;
+}
+li.sub {
+    list-style-type: none;
+}
+
 
 /* ANIMATIONS */ 
 
-.list-group.ng-hide:not(.ng-hide-animate) {
+.list-group.nav.ng-hide:not(.ng-hide-animate) {
     height: 0;
     transition: height 250ms ease;
     visibility: hidden;
     display: flex !important;
 }
 
-.list-group.ng-hide:not(.ng-hide-animate) a {
+.list-group.nav.ng-hide:not(.ng-hide-animate) a {
     opacity: 0;
 }
 
-.list-group.ng-hide:not(.ng-hide-animate) li {
+.list-group.nav.ng-hide:not(.ng-hide-animate) li {
     display: none;
 }
 
-ul.list-group {
+ul.list-group.nav {
     height: 150px;
     transition: height 250ms ease-in-out;
 }
 
-ul.list-group a {
+ul.list-group.nav a {
     font-size: inherit;
     opacity: 1;
 }
 
-li.list-group-item {
+li.list-group-item.nav {
     opacity: 0;
 }
 
-li.list-group-item:nth-child(1) {
+li.list-group-item.nav:nth-child(1) {
     animation: fadeInBlock 250ms ease 180ms forwards;
 }
 
-li.list-group-item:nth-child(2) {
+li.list-group-item.nav:nth-child(2) {
     animation: fadeInBlock 250ms ease 210ms forwards;
 }
 
-li.list-group-item:nth-child(3) {
+li.list-group-item.nav:nth-child(3) {
     animation: fadeInBlock 250ms ease 240ms forwards;
 }
 
-li.list-group-item:nth-child(4) {
+li.list-group-item.nav:nth-child(4) {
     animation: fadeInBlock 250ms ease 270ms forwards;
 }
 

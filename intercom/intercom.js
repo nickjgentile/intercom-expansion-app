@@ -14,20 +14,13 @@ ipc.on('CREATE_TICKET', function (event, idval) {
         },
         body: "This is a manually initiated message. Please add a note to the convesration to describe what was discussed."
       }
-
-      console.log('message.idval = ' + idval + ' idval type = ' + typeof(idval))
       
     client.messages.create(message)
         .then(function(m) {
-            console.log(m.body)
             event.sender.send('TICKET_CREATED', m.body)
         })
         .catch(function(err) {
             console.log(err)
+            event.sender.send('TICKET_CREATE_FAILED', err)
         })    
 })
-
-
-// module.exports = {
-//     createTicket
-// };

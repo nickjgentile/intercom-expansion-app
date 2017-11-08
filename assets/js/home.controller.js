@@ -10,8 +10,8 @@
 
             $scope.loading = true;
 
-            $scope.userExpand = function (e) {
-                console.log(e)
+            $scope.userExpand = function (uid) {
+                console.log(uid)
             };
 
             client
