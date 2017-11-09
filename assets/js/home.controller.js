@@ -48,15 +48,6 @@
                     })
             }
 
-            client
-                .conversations
-                .list()
-                .then(function (convos) {
-                    console.log(convos);
-                })
-                .catch(function (err) {
-                    console.log(err);
-                })
 
             client
                 .users
