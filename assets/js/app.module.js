@@ -14,8 +14,9 @@
                 .when('/company', {
                     templateUrl: './views/company.html'
                 })
-                .when('/user', {
-                    templateUrl: './views/user.html'
+                .when('/conversations', {
+                    templateUrl: './views/conversations.html',
+                    controller: 'ConversationController'
                 })
                 .when('/userid', {
                     templateUrl: './views/userid.html'

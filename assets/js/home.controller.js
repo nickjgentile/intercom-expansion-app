@@ -16,6 +16,7 @@
 
             $scope.imageplace = './assets/images/placeholder.png';
 
+
             $scope.hideModal = () => {
                 var htmlclass = document.getElementsByTagName('html')[0];
 
@@ -37,6 +38,7 @@
                     .then(function (r) {
                         $scope.selectedUser = r.body
                         console.log($scope.selectedUser)
+
                         $scope.modalload = false;
                         $scope.contentReady = true;
                         $scope.$apply();
@@ -45,6 +47,16 @@
                         console.log(err)
                     })
             }
+
+            client
+                .conversations
+                .list()
+                .then(function (convos) {
+                    console.log(convos);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
 
             client
                 .users
