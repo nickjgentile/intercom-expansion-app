@@ -17,6 +17,8 @@
             $scope.imageplace = './assets/images/placeholder.png';
 
 
+            
+
             $scope.hideModal = () => {
                 var htmlclass = document.getElementsByTagName('html')[0];
 
