@@ -1,4 +1,3 @@
-
 (function () {
     const Intercom = require('intercom-client');
 
@@ -16,6 +15,12 @@
 
             $scope.imageplace = './assets/images/placeholder.png';
 
+            $scope.getDate = (date) => {
+                var newDate = new Date();
+                newDate.setTime(date * 1000)
+                var dateString = newDate.toUTCString();
+                return dateString;
+            }
 
             $scope.hideModal = () => {
                 var htmlclass = document.getElementsByTagName('html')[0];
@@ -47,7 +52,6 @@
                         console.log(err)
                     })
             }
-
 
             client
                 .users

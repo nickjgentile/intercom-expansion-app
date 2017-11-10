@@ -10,6 +10,9 @@
         .controller('ConversationController', ['$scope', function ($scope) {
 
 
+            $scope.allConvs = [];
+            $scope.pages;
+
             client
                 .counts
                 .conversationCounts()
@@ -23,15 +26,37 @@
 
             client
                 .conversations
-                .list()
+                .list({ per_page: 60 })
                 .then(function (r) {
-                    $scope.convos = (r.body.conversations)
-                    console.log($scope.convos)
-                    $scope.$apply();
+                    $scope.pages = r.body.pages.total_pages;
+                    console.log($scope.pages)
+                    $scope.listConvs()
                 })
                 .catch(function (err) {
                     console.log(err)
                 })
+
+
+            $scope.listConvs = function () {
+                let count = 1;
+                console.log($scope.pages);
+                console.log(count);
+                while (count < $scope.pages) {
+                    client
+                        .conversations
+                        .list({ per_page: 60, page: $scope.count })
+                        .then(function (r) {
+                            console.log(r)
+                            $scope.allConvs.push(...r.body.conversations)
+                            console.log($scope.allConvs)
+                            count++
+                        })
+                        .catch(function (err) {
+                            console.log(err)
+                        })
+                }
+                $scope.$apply();
+            }
 
 
         }])

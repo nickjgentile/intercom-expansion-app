@@ -52,6 +52,9 @@
                 <li class="list-group-item">
                     <strong>Sessions:</strong>&nbsp;{{ selectedUser.session_count }}
                 </li>
+                <li class="list-group-item">
+                        <strong>Last Seen:</strong>&nbsp;{{ getDate(selectedUser.last_request_at) }}
+                </li>
             </ul>
         </div>
     </div>

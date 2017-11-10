@@ -96,6 +96,7 @@ li.main.list-group-item:hover {
 
 li.list-group-item.userlink:hover {
     background: #24d6df;
+    transition: 400ms ease;
 }.userlink:hover strong {
     color: white;
 }
