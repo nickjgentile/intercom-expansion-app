@@ -28,8 +28,8 @@
                 .conversations
                 .list({ per_page: 60 })
                 .then(function (r) {
+                    console.log(r)
                     $scope.pages = r.body.pages.total_pages;
-                    console.log($scope.pages)
                     $scope.listConvs()
                 })
                 .catch(function (err) {
@@ -41,15 +41,15 @@
                 let count = 1;
                 console.log($scope.pages);
                 console.log(count);
-                while (count < $scope.pages) {
+
+                for(let count = 1; count <= $scope.pages; count++) {         
                     client
                         .conversations
-                        .list({ per_page: 60, page: $scope.count })
+                        .list({ per_page: 60, page: count })
                         .then(function (r) {
                             console.log(r)
                             $scope.allConvs.push(...r.body.conversations)
                             console.log($scope.allConvs)
-                            count++
                         })
                         .catch(function (err) {
                             console.log(err)
