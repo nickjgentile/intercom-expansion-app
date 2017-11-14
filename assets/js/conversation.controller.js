@@ -9,9 +9,20 @@
         .module('int')
         .controller('ConversationController', ['$scope', function ($scope) {
 
-
+            $scope.loadingConvs = false;
             $scope.allConvs = [];
             $scope.pages;
+
+            $scope.getDate = (date) => {
+                var newDate = new Date();
+                newDate.setTime(date * 1000)
+                var dateString = newDate.toUTCString();
+                return dateString;
+            }
+
+            $scope.removeTags = (str) => {
+                return str.replace(/<[^>]*>/g, '').replace('</p>', '');
+            }
 
             client
                 .counts
@@ -47,15 +58,15 @@
                         .conversations
                         .list({ per_page: 60, page: count })
                         .then(function (r) {
-                            console.log(r)
                             $scope.allConvs.push(...r.body.conversations)
                             console.log($scope.allConvs)
+                            $scope.$apply();
                         })
                         .catch(function (err) {
                             console.log(err)
                         })
                 }
-                $scope.$apply();
+                $scope.loadingConvs = true;
             }
 
 

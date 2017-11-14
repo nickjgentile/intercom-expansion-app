@@ -1,8 +1,17 @@
+<div id="loadConvs" ng-show="!loadingConvs">
+    <div>
+        Loading all of your app's conversations. This may take a minute or two. </br>
+        </br>
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" id="cyanLoad"></i>
+    </div>
+</div>
+
 <div class="container">
 
     <h2> Conversations </h2>
-    <form>
-        <select class="form-control" id="exampleSelect1">
+    <form id="timeTableForm">
+        <select class="form-control" id="timeTable">
+            <option>Select Timeframe</option>
             <option>30 Days</option>
             <option>60 Days</option>
             <option>90 Days</option>
@@ -11,22 +20,40 @@
         </select>
     </form>
 
-    <div class="row">
-        <!-- <div class="convoMain col-md-7">
-            <ul>
-                <li ng-repeat="conversation in convos">
-                    <p>{{ conversation.state }}, {{ conversation.assignee.id }}</p> 
-                    <p>{{ conversation.conversation_message.author.id }}</p>
-                    <p>{{ conversation.conversation_message.body }}</p>
-                </li>
-            </ul>
-        </div> -->
-        <div class="currentConversations col-md-2">
-            <p>Current Conversations</p>
+    <div class="row" ng-show="loadingConvs">
+        <table class="table-striped">
+            <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>User</th>
+                    <th>Assigned</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                    <th>Tags</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="conv in allConvs">
+                    <td>{{ removeTags(conv.conversation_message.body) }} </td>
+                    <td>{{ conv.conversation_message.author.id }} </td>
+                    <td>{{ conv.assignee.id }} </td>
+                    <td>{{ getDate(conv.created_at) }} </td>
+                    <td>{{ getDate(conv.updated_at) }} </td>
+                    <td> {{ conv.tags.tags }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <div class="currentConversations col-md-2">
+            <h3>Current Conversations</h3>
             <p>
-                <em>{{countdata}}</em>
+                <p>
+                    Open: {{ countdata.open }}
+                    <br/> Closed: {{ countdata.closed }}
+                    <br/> Unassigned: {{ countdata.unassigned }}
+                    <br/> Assigned: {{ countdata.assigned }}
+                </p>
             </p>
-        </div>
+        </div> -->
     </div>
 
 </div>
