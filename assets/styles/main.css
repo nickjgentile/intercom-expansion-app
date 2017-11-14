@@ -103,10 +103,6 @@ li.list-group-item.userlink:hover {
 
 /* == CONVERSATION PAGE == */
 
-#timeTableForm {
-    padding-bottom: 20px;
-}
-
 /* Loader */
 #loadConvs {
     position: absolute;
@@ -125,6 +121,35 @@ li.list-group-item.userlink:hover {
 }#cyanLoad {
     color: #24d6df;
 }
+
+.convos td {
+    padding: 2px 5px;
+    font-size: 13px;
+    border: 2px solid #e4e4e4;
+    color: #2f4357;
+}.convos th {
+    text-align: left;
+    color: #2f4357;
+    font-size: 12px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}.convos {
+    width: 100%;
+}.convos td:first-of-type {
+    border-radius: 8px 0px 0px 8px;
+}.convos td:last-of-type {
+    border-radius: 0px 8px 8px 0px;
+}
+
+#timeTable {
+    margin-top: 12px;
+    display: inline-block;
+}#searchConvs {
+    display: inline-block;
+    margin-top: 12px;
+}
+
+
 
 /* == MODAL STYLES == */
 

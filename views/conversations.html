@@ -9,19 +9,32 @@
 <div class="container">
 
     <h2> Conversations </h2>
-    <form id="timeTableForm">
-        <select class="form-control" id="timeTable">
-            <option>Select Timeframe</option>
+
+    <button ng-click="dateToggle()" class="btn btn-primary">Filter Date</button>
+    <button ng-click="inputToggle()" class="btn btn-primary">Search Conversations</button>
+
+    <form ng-show="timeFilter" id="timeTableForm">
+        <select class="form-control col-md-10" id="timeTable" ng-model="dates">
             <option>30 Days</option>
             <option>60 Days</option>
             <option>90 Days</option>
             <option>120 Days</option>
             <option>Past Year</option>
+            <option>Show All</option>
         </select>
+        <button ng-click="dateToggle()" class="btn btn-outline-primary col-md-1">Hide</button>
     </form>
 
+    <div ng-show="searchFilter">
+        <input class="form-control col-md-10" id="searchConvs" ng-model="search" 
+        type="text" placeholder="Search Conversations"/>
+        <button ng-click="inputToggle()" class="btn btn-outline-primary col-md-1">Hide</button>
+    </div>
+
+    <p>{{ getName('5887d6d9b3366404b4915db1') }}</p>
+
     <div class="row" ng-show="loadingConvs">
-        <table class="table-striped">
+        <table class="convos table-striped">
             <thead>
                 <tr>
                     <th>Message</th>
@@ -33,7 +46,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="conv in allConvs">
+                <tr ng-repeat="conv in allConvs | filter: search | filter: dates">
                     <td>{{ removeTags(conv.conversation_message.body) }} </td>
                     <td>{{ conv.conversation_message.author.id }} </td>
                     <td>{{ conv.assignee.id }} </td>
