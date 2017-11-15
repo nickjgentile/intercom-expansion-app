@@ -16,7 +16,14 @@
             $scope.timeFilter = false;
             $scope.order = '-conversation_message.author.id';
 
-            $scope.dateRange = '';
+            $scope.dateRange = function(conv) {
+                var today = new Date();
+                var endList = today.getTime();
+                var startList = (new Date()).setDate(today.getDate()-30);
+
+                return (conv.created_at * 1000 > startList && 
+                        conv.created_at * 1000 < endList);
+            }
 
             $scope.timeFrame = () => {
 
