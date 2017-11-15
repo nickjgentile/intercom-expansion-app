@@ -13,6 +13,8 @@
 
             $scope.modal = false;
 
+            $scope.users = [];
+
             $scope.imageplace = './assets/images/placeholder.png';
 
             $scope.getDate = (date) => {
@@ -57,12 +59,21 @@
                 .users
                 .list()
                 .then(function (d) {
-                    $scope.users = d.body.users;
-                    $scope.loading = false;
-                    $scope.$apply();
+                    $scope.totalPages = d.body.pages.total_pages;
                 })
-                .catch(function (err) {
-                    console.log(err);
-                })
+                .then( 
+                    client
+                    .users
+                    .list()
+                    .then(function (d) {
+                        $scope.users.push(...d.body.users);
+                    })
+                    .then(function () {
+                        $scope.loading = false;
+                        $scope.$apply();
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    }))
         }])
 })();

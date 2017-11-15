@@ -11,13 +11,21 @@
 
             $scope.loadingConvs = false;
             $scope.allConvs = [];
-            // $scope.userIDs = {
-            //     '5887d6d9b3366404b4915db1': 'Anthony'
-            // };
             $scope.pages;
             $scope.searchFilter = false;
             $scope.timeFilter = false;
             $scope.order = '-conversation_message.author.id';
+
+            $scope.dateRange = '';
+
+            $scope.timeFrame = () => {
+
+                var today = new Date();
+                var endList = today.getTime();
+                var startList = (new Date()).setDate(today.getDate()-30);
+
+                console.log(`Start time is ${startList} end time is ${endList}`)
+            }
 
             $scope.inputToggle = () => {
                 $scope.searchFilter = !$scope.searchFilter
@@ -39,25 +47,11 @@
                 var newDate = new Date();
                 newDate.setTime(date * 1000)
                 var currDay = newDate.getDate();
-                var currMonth = newDate.getMonth();
+                var currMonth = newDate.getMonth()+1;
                 var currYear = newDate.getFullYear();
                 var dateString = currDay + '/' + currMonth + '/' + currYear
                 return dateString;
             }
-
-            // $scope.getName = (id) => {
-            //     console.log(id)
-            //     client
-            //         .users
-            //         .find({ id: id })
-            //         .then(function (r) {
-            //             console.log(r.body.name)
-            //             return r.body.name;
-            //         })
-            //         .catch(function (err) {
-            //             console.log(err);
-            //         })
-            // }
 
             $scope.removeTags = (str) => {
                 return str.replace(/<[^>]*>/g, '').replace('</p>', '');

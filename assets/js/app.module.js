@@ -28,9 +28,6 @@
                 .otherwise({
                     redirectTo: '/home'
                 })
-        
 
-
-                
         }])
 })();
