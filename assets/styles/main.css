@@ -130,11 +130,16 @@ li.list-group-item.userlink:hover {
 }.convos th {
     text-align: left;
     color: #2f4357;
-    font-size: 12px;
+    font-size: 13px;
     padding-bottom: 10px;
     text-transform: uppercase;
+    padding-right: 5px;
+    cursor: pointer;
+}.convos th:hover {
+    opacity: .7;
 }.convos {
     width: 100%;
+    margin-top: 20px;
 }.convos td:first-of-type {
     border-radius: 8px 0px 0px 8px;
 }.convos td:last-of-type {

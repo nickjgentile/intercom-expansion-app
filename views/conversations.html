@@ -31,22 +31,20 @@
         <button ng-click="inputToggle()" class="btn btn-outline-primary col-md-1">Hide</button>
     </div>
 
-    <p>{{ getName('5887d6d9b3366404b4915db1') }}</p>
-
     <div class="row" ng-show="loadingConvs">
         <table class="convos table-striped">
             <thead>
                 <tr>
-                    <th>Message</th>
-                    <th>User</th>
-                    <th>Assigned</th>
-                    <th>Created</th>
-                    <th>Updated</th>
-                    <th>Tags</th>
+                    <th ng-click="changeOrder($event)" value="-conversation_message.body">Message</th>
+                    <th ng-click="changeOrder($event)" value="-conversation_message.author.id">User</th>
+                    <th ng-click="changeOrder($event)" value="-assignee.id">Assigned</th>
+                    <th ng-click="changeOrder($event)" value="-created_at">Created</th>
+                    <th ng-click="changeOrder($event)" value="-updated_at">Updated</th>
+                    <th ng-click="changeOrder($event)" value="-tags.tags">Tags</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="conv in allConvs | filter: search | filter: dates">
+                <tr ng-repeat="conv in allConvs | filter: search | filter: dates | orderBy: order ">
                     <td>{{ removeTags(conv.conversation_message.body) }} </td>
                     <td>{{ conv.conversation_message.author.id }} </td>
                     <td>{{ conv.assignee.id }} </td>

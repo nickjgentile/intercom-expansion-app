@@ -11,15 +11,24 @@
 
             $scope.loadingConvs = false;
             $scope.allConvs = [];
-            $scope.userIDs = {
-                '5887d6d9b3366404b4915db1': 'Anthony'
-            };
+            // $scope.userIDs = {
+            //     '5887d6d9b3366404b4915db1': 'Anthony'
+            // };
             $scope.pages;
             $scope.searchFilter = false;
             $scope.timeFilter = false;
+            $scope.order = '-conversation_message.author.id';
 
             $scope.inputToggle = () => {
                 $scope.searchFilter = !$scope.searchFilter
+            }
+
+            $scope.changeOrder = function ($event) {
+                if ($scope.order == $event.target.attributes[1].nodeValue) {
+                    $scope.order = $scope.order.replace('-', '');
+                } else {
+                    $scope.order = $event.target.attributes[1].nodeValue;
+                }
             }
 
             $scope.dateToggle = () => {
@@ -36,19 +45,19 @@
                 return dateString;
             }
 
-            $scope.getName = (id) => {
-                console.log(id)
-                client
-                    .users
-                    .find({ id: id })
-                    .then(function (r) {
-                        console.log(r.body.name)
-                        return r.body.name;
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            }
+            // $scope.getName = (id) => {
+            //     console.log(id)
+            //     client
+            //         .users
+            //         .find({ id: id })
+            //         .then(function (r) {
+            //             console.log(r.body.name)
+            //             return r.body.name;
+            //         })
+            //         .catch(function (err) {
+            //             console.log(err);
+            //         })
+            // }
 
             $scope.removeTags = (str) => {
                 return str.replace(/<[^>]*>/g, '').replace('</p>', '');
