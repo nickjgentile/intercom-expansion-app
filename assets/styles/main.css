@@ -146,6 +146,15 @@ li.list-group-item.userlink:hover {
     border-radius: 0px 8px 8px 0px;
 }
 
+.currentConversations {
+    font-size: 10px;
+    padding: 0;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0px;
+}
+
 #timeTable {
     margin-top: 12px;
     display: inline-block;

@@ -16,22 +16,20 @@
             $scope.timeFilter = false;
             $scope.order = '-conversation_message.author.id';
 
-            $scope.dateRange = function(conv) {
-                var today = new Date();
-                var endList = today.getTime();
-                var startList = (new Date()).setDate(today.getDate()-30);
+            $scope.dateRange = '';
 
-                return (conv.created_at * 1000 > startList && 
-                        conv.created_at * 1000 < endList);
-            }
+            $scope.timeFrame = (e) => {
+                let num = e.target.children[0].value;
 
-            $scope.timeFrame = () => {
+                $scope.dateRange = function(conv) {
+                    var today = new Date();
+                    var endList = today.getTime();
+                    var startList = (new Date()).setDate(today.getDate()-num);
+    
+                    return (conv.created_at * 1000 > startList && 
+                            conv.created_at * 1000 < endList);
+                }
 
-                var today = new Date();
-                var endList = today.getTime();
-                var startList = (new Date()).setDate(today.getDate()-30);
-
-                console.log(`Start time is ${startList} end time is ${endList}`)
             }
 
             $scope.inputToggle = () => {
