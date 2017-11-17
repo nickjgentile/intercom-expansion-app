@@ -47,7 +47,7 @@
             <tbody>
                 <tr ng-repeat="conv in allConvs | filter: search | filter: dateRange | orderBy: order ">
                     <td>{{ removeTags(conv.conversation_message.body) }} </td>
-                    <td>{{ conv.conversation_message.author.id }} </td>
+                    <td>{{ conv.user.name }} </td>
                     <td>{{ conv.assignee.id }} </td>
                     <td>{{ getDate(conv.created_at) }} </td>
                     <td>{{ getDate(conv.updated_at) }} </td>

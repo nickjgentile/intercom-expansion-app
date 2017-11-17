@@ -21,13 +21,13 @@
             $scope.timeFrame = (e) => {
                 let num = e.target.children[0].value;
 
-                $scope.dateRange = function(conv) {
+                $scope.dateRange = function (conv) {
                     var today = new Date();
                     var endList = today.getTime();
-                    var startList = (new Date()).setDate(today.getDate()-num);
-    
-                    return (conv.created_at * 1000 > startList && 
-                            conv.created_at * 1000 < endList);
+                    var startList = (new Date()).setDate(today.getDate() - num);
+
+                    return (conv.created_at * 1000 > startList &&
+                        conv.created_at * 1000 < endList);
                 }
 
             }
@@ -52,7 +52,7 @@
                 var newDate = new Date();
                 newDate.setTime(date * 1000)
                 var currDay = newDate.getDate();
-                var currMonth = newDate.getMonth()+1;
+                var currMonth = newDate.getMonth() + 1;
                 var currYear = newDate.getFullYear();
                 var dateString = currDay + '/' + currMonth + '/' + currYear
                 return dateString;
@@ -67,7 +67,6 @@
                 .conversationCounts()
                 .then(function (r) {
                     $scope.countdata = r.body.conversation
-                    $scope.$apply();
                 })
                 .catch(function (err) {
                     console.log(err)
@@ -77,7 +76,6 @@
                 .conversations
                 .list({ per_page: 60 })
                 .then(function (r) {
-                    console.log(r)
                     $scope.pages = r.body.pages.total_pages;
                     $scope.listConvs()
                 })
@@ -85,26 +83,50 @@
                     console.log(err)
                 })
 
-
             $scope.listConvs = function () {
-                let count = 1;
-                console.log($scope.pages);
-                console.log(count);
+                var users = new Set();
+                var userNames = [];
+                var allConvs = [];
+                var promises = [];
 
+                //
                 for (let count = 1; count <= $scope.pages; count++) {
-                    client
-                        .conversations
-                        .list({ per_page: 60, page: count })
-                        .then(function (r) {
-                            $scope.allConvs.push(...r.body.conversations)
-                            console.log($scope.allConvs)
-                            $scope.$apply();
+                    promises.push(client.conversations.list({ per_page: 60, page: count }))
+                };
+
+                Promise.all(promises).then((pages) => {
+                    pages.forEach((page) => {
+                        allConvs.push(...page.body.conversations)
+
+                        page.body.conversations.forEach((r) => {
+                            users.add(r.user.id);
                         })
-                        .catch(function (err) {
-                            console.log(err)
+                    })
+
+                    var promises2 = [];
+
+                    users.forEach(user => {
+                        promises2.push(
+                            client.users
+                                .find({ id: user }))
+                    })
+
+                    Promise.all(promises2).then((uniqueUsers) => {
+                        users = [];
+
+                        uniqueUsers.forEach(user => {
+                            users[user.body.id] = { name: user.body.name, email: user.body.email, id: user.body.id};
                         })
-                }
-                $scope.loadingConvs = true;
+                        
+                        allConvs.forEach((conv) => {
+                            if (!!users[conv.user.id]) conv.user = users[conv.user.id];
+                        })
+
+                        $scope.allConvs = allConvs;
+                        $scope.loadingConvs = true;
+                        $scope.$apply();
+                    })
+                });
             }
 
 

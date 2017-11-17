@@ -25,8 +25,9 @@ ipcRenderer.on('TICKET_CREATED', (event, res) => {
 ipcRenderer.on('TICKET_CREATE_FAILED', (event, err) => {
     console.log(err)
     var resmessage = `<h3 class="red">FAILURE!</h3> 
-    <p>You submitted an invalid userID, or do not have access to post users. See details below.</p>
+    <p>You submitted an invalid userID, or do not have access to post users. See details below and check to make sure that you're using a valid Access Token.</p>
     <p>${err}</p>`
     document.getElementById('ticketCreateSpin').style.display = "none";
     document.getElementById('response').innerHTML = resmessage;
 })
+

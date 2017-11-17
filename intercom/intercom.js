@@ -20,7 +20,7 @@ ipc.on('CREATE_TICKET', function (event, idval) {
             event.sender.send('TICKET_CREATED', m.body)
         })
         .catch(function(err) {
-            console.log(err)
+            console.log('ERROR LOG ' + err)
             event.sender.send('TICKET_CREATE_FAILED', err)
         })    
 })
