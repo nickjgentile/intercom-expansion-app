@@ -3,9 +3,11 @@ const Intercom = require('intercom-client');
 const electron = require('electron');
 const ipc = electron.ipcMain;
 
-var client = new Intercom.Client({ token: 'dG9rOjVlMzA5ZWRmXzY5ZjVfNGFkNV9iYzQ1XzlkOWJlMjEzZDQ3YzoxOjA=' });
+// dG9rOjVlMzA5ZWRmXzY5ZjVfNGFkNV9iYzQ1XzlkOWJlMjEzZDQ3YzoxOjA=
 
-ipc.on('CREATE_TICKET', function (event, idval) {
+
+ipc.on('CREATE_TICKET', function (event, idval, apiKey) {
+    var client = new Intercom.Client({ token: apiKey });
 
     var message = {
         from: {

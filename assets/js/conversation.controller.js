@@ -3,11 +3,16 @@
     angular
         .module('int')
         .controller('ConversationController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+            !$rootScope.apiKey ? $rootScope.apiKey = 'empty' : console.log('key already in place');
 
-            console.log($rootScope.apiKey)
-            
+            $rootScope.apiKey === 'empty' ?
+                location.href = 'index.html#!/settings'
+                :
+                console.log($rootScope.apiKey);
+
+
             const Intercom = require('intercom-client');
-            
+
             var client = new Intercom.Client({ token: $rootScope.apiKey });
 
             $scope.loadingConvs = false;
@@ -83,6 +88,7 @@
                 })
                 .catch(function (err) {
                     console.log(err)
+                    alert('You need to Input a Valid Access Token First')
                 })
 
             listUsers = function () {
@@ -104,7 +110,7 @@
                         })
                         $scope.userGrab = userList
                     }
-                    console.log($scope.userGrab); 
+                    console.log($scope.userGrab);
                 }
                 $scope.listConvs()
             }

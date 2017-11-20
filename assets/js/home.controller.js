@@ -7,13 +7,13 @@
 
             !$rootScope.apiKey ? $rootScope.apiKey = 'empty' : console.log('key already in place');
 
-            $rootScope.apiKey === 'empty' ? 
-            location.href = 'index.html#!/settings'
-            : 
-            console.log($rootScope.apiKey);
- 
+            $rootScope.apiKey === 'empty' ?
+                location.href = 'index.html#!/settings'
+                :
+                console.log($rootScope.apiKey);
+
             const Intercom = require('intercom-client');
-            
+
             var client = new Intercom.Client({ token: $rootScope.apiKey });
 
             $scope.loading = true;
@@ -69,23 +69,26 @@
                 .list()
                 .then(function (d) {
                     $scope.totalPages = d.body.pages.total_pages;
+                    displayUsers();
                 })
-                .then( 
+
+            var displayUsers = function () {
+                for (let i = 1; i <= $scope.totalPages; i++) {
                     client
-                    .users
-                    .listBy( {per_page: 60} )
-                    .then(function (d) {
-                        $scope.users.push(...d.body.users);
-                    })
-                    .then(function () {
-                        $scope.loading = false;
-                        $scope.$apply();
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                        alert('Please input a valid API Key')
-                        $scope.loading = false;
-                        $scope.$apply();
-                    }))
+                        .users
+                        .listBy({ per_page: 60, page: i })
+                        .then(function (d) {
+                            $scope.users.push(...d.body.users);
+                            $scope.$apply();
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                            alert('Please input a valid API Key')
+                            $scope.loading = false;
+                            $scope.$apply();
+                        })
+                }
+                $scope.loading = false;
+            }
         }])
 })();
