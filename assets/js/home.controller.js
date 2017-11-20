@@ -1,11 +1,20 @@
 (function () {
-    const Intercom = require('intercom-client');
 
-    var client = new Intercom.Client({ token: 'dG9rOjVlMzA5ZWRmXzY5ZjVfNGFkNV9iYzQ1XzlkOWJlMjEzZDQ3YzoxOjA=' });
 
     angular
         .module('int')
-        .controller('HomeController', ['$scope', '$http', function ($scope, $http) {
+        .controller('HomeController', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
+
+            !$rootScope.apiKey ? $rootScope.apiKey = 'empty' : console.log('key already in place');
+
+            $rootScope.apiKey === 'empty' ? 
+            location.href = 'index.html#!/settings'
+            : 
+            console.log($rootScope.apiKey);
+ 
+            const Intercom = require('intercom-client');
+            
+            var client = new Intercom.Client({ token: $rootScope.apiKey });
 
             $scope.loading = true;
 
@@ -64,7 +73,7 @@
                 .then( 
                     client
                     .users
-                    .list()
+                    .listBy( {per_page: 60} )
                     .then(function (d) {
                         $scope.users.push(...d.body.users);
                     })
@@ -74,6 +83,9 @@
                     })
                     .catch(function (err) {
                         console.log(err);
+                        alert('Please input a valid API Key')
+                        $scope.loading = false;
+                        $scope.$apply();
                     }))
         }])
 })();

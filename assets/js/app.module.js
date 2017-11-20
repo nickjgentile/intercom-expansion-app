@@ -1,11 +1,12 @@
 (function () {
-    angular
+    var int = angular
         .module('int', ['ngRoute'])
         .config(['$routeProvider', function ($routeProvider) {
 
             $routeProvider
                 .when('/settings', {
-                    templateUrl: './views/settings.html'
+                    templateUrl: './views/settings.html',
+                    controller: 'SettingsController'
                 })
                 .when('/addticket', {
                     templateUrl: './views/addticket.html',
@@ -18,8 +19,9 @@
                     templateUrl: './views/conversations.html',
                     controller: 'ConversationController'
                 })
-                .when('/userid', {
-                    templateUrl: './views/userid.html'
+                .when('/sendmessage', {
+                    templateUrl: './views/sendmessage.html',
+                    controller: 'SendMessageController'
                 })
                 .when('/home', {
                     templateUrl: './views/home.html',
@@ -30,4 +32,5 @@
                 })
 
         }])
+
 })();
