@@ -5,11 +5,10 @@
         .controller('ConversationController', ['$scope', '$rootScope', function ($scope, $rootScope) {
             !$rootScope.apiKey ? $rootScope.apiKey = 'empty' : console.log('key already in place');
 
-            $rootScope.apiKey === 'empty' ?
+            if($rootScope.apiKey === 'empty') {
+                alert('Please Input a Valid Access Token First')
                 location.href = 'index.html#!/settings'
-                :
-                console.log($rootScope.apiKey);
-
+            }
 
             const Intercom = require('intercom-client');
 
@@ -88,7 +87,6 @@
                 })
                 .catch(function (err) {
                     console.log(err)
-                    alert('You need to Input a Valid Access Token First')
                 })
 
             listUsers = function () {
@@ -103,7 +101,7 @@
                 function display() {
                     console.log(page)
                     for (let i = 1; i <= page; i++) {
-                        client.users.listBy({ per_page: 60, page: 1 }).then(function (r) {
+                        client.users.listBy({ per_page: 60, page: i }).then(function (r) {
                             r.body.users.forEach(user => {
                                 userList.push({ id: user.id, email: user.email, name: user.name })
                             })
@@ -116,8 +114,6 @@
             }
 
             $scope.listConvs = function () {
-                var users = new Set();
-                var userNames = [];
                 var allConvs = [];
                 var promises = [];
 
@@ -134,44 +130,20 @@
                 //take unique Ids
                 Promise.all(promises).then((pages) => {
                     pages.forEach((page) => {
+                        //Create a single page of all conversations
                         allConvs.push(...page.body.conversations)
 
-                        page.body.conversations.forEach((r) => {
-                            users.add(r.user.id);
+                        //Go through each conversation
+                        allConvs.forEach((r) => {
+                            //Replace user object with user data pulled from listusers function
+                            r.user = $scope.userGrab.find(user => user.id === r.user.id);
                         })
                     })
 
-                    //declare a second promises array
-                    var promises2 = [];
+                    $scope.allConvs = allConvs;
+                    $scope.loadingConvs = true;
+                    $scope.$apply();
 
-                    //once all that is done, i will iterate through each user in users array, and push an api call to find
-                    //the user associated with that ID to promises2 array.
-                    users.forEach(user => {
-                        promises2.push(
-                            client.users
-                                .find({ id: user }))
-                    })
-
-                    //make sure all promises in promises2 have been made, then, with all of the responses (uniqueUsers), do this:
-                    Promise.all(promises2).then((uniqueUsers) => {
-                        users = [];
-
-                        //create new users array and set it to have user ID, Name, and Email.
-                        uniqueUsers.forEach(user => {
-                            users[user.body.id] = { name: user.body.name, email: user.body.email, id: user.body.id };
-                        })
-
-
-                        //then, take each conversation (stored in scope previously in allConvs array), and set the conversation's
-                        //user the matching users value with the same id. 
-                        allConvs.forEach((conv) => {
-                            if (!!users[conv.user.id]) conv.user = users[conv.user.id];
-                        })
-
-                        $scope.allConvs = allConvs;
-                        $scope.loadingConvs = true;
-                        $scope.$apply();
-                    })
                 });
             }
         }])

@@ -7,7 +7,7 @@
         
         $scope.updateKey = function(e, apikey) {
             $rootScope.apiKey = e.target.children[1].value;
-            alert('You Access Token Key is Updated')
+            alert('Your Access Token is Updated')
             location.href = 'index.html#!/home'
         }
     }])

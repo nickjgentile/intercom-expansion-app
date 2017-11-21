@@ -7,10 +7,10 @@
 
             !$rootScope.apiKey ? $rootScope.apiKey = 'empty' : console.log('key already in place');
 
-            $rootScope.apiKey === 'empty' ?
+            if($rootScope.apiKey === 'empty') {
+                alert('Please input a valid Access Token Before Using the App')
                 location.href = 'index.html#!/settings'
-                :
-                console.log($rootScope.apiKey);
+            }
 
             const Intercom = require('intercom-client');
 
@@ -72,7 +72,7 @@
                     displayUsers();
                 })
                 .catch(function(err){
-                    alert('Please submit a valid Access Token.')
+                    console.log(err)
                 })
 
             var displayUsers = function () {
@@ -86,7 +86,6 @@
                         })
                         .catch(function (err) {
                             console.log(err);
-                            alert('Please input a valid Access Token Key')
                             $scope.loading = false;
                             $scope.$apply();
                         })
