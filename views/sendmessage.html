@@ -1,16 +1,25 @@
-<div class="container">
+<div class="container-fluid">
 
-    <h2>Send a Message to a User</h2>
+    <!-- <h2>Send a Message</h2> -->
 
-    <form class="form">
-        <label for="getid">Submit user Email-Address to get User's ID</label>
-        <input class="form-control" id="getid" type="text" />
-        <button type="submit" class="btn btn-primary">Get ID</button>
+    <form class="form" id="sendMessageForm" ng-submit="sendMess($event)">
+        <h3>Send a Direct Message to a User</h3>
+        <br/>
+        <label for="getid">To (UserID):</label>
+        <input class="form-control col-md-6" id="getid" value="5447b5120fe95add578366a0" type="text" />
+        <label for="from">From (AdminID):</label>
+        <input class="form-control col-md-6" id="from" type="text" value="827870"/>
+        <label for="message">Message:</label>
+        <textarea class="form-control" id="message" type="text"></textarea>
+        <button type="submit" class="btn btn-secondary">Send Message</button>
+        <div class="userIdMain" ng-show="completed">
+            <p id="sendResponse"><strong style="color: red;">Wait!</strong> Your Access Token is Invalid</p>
+        </div>
     </form>
 
-
-    <div class="userIdMain">
-        <code>Your User's ID is [id value]</code>
-    </div>
+<!-- 
+    <div class="userIdMain" ng-show="completed">
+        <p id="sendResponse"><strong style="color: red;">Wait!</strong> Your Access Token is Invalid</p>
+    </div> -->
 
 </div>

@@ -71,6 +71,9 @@
                     $scope.totalPages = d.body.pages.total_pages;
                     displayUsers();
                 })
+                .catch(function(err){
+                    alert('Please submit a valid Access Token.')
+                })
 
             var displayUsers = function () {
                 for (let i = 1; i <= $scope.totalPages; i++) {
@@ -83,7 +86,7 @@
                         })
                         .catch(function (err) {
                             console.log(err);
-                            alert('Please input a valid API Key')
+                            alert('Please input a valid Access Token Key')
                             $scope.loading = false;
                             $scope.$apply();
                         })
