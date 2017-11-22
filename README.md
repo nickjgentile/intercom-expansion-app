@@ -10,10 +10,10 @@ To use the app, simply download and start the app, upon which you will be asked 
 
 Once you access token is submitted, you now have full access to the features of the app. 
 
+##_
+##_
 
-
-
-## Electon Quick Start (Which I used to Skeleton) Below:
+## Electon Quick Start (Which I used to Skeleton) Information Below:
 
 # electron-quick-start
 
