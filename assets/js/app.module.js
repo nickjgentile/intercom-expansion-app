@@ -13,7 +13,8 @@
                     controller: 'intController'
                 })
                 .when('/company', {
-                    templateUrl: './views/company.html'
+                    templateUrl: './views/company.html',
+                    controller: 'CompanyController'
                 })
                 .when('/conversations', {
                     templateUrl: './views/conversations.html',
