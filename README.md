@@ -1,3 +1,20 @@
+## Intercom Expansion App
+
+**Have more control over your Intercom app's data**
+
+This application is built to expand the possibilities of manipulation of data within your intercom app's dataset. 
+
+It also allows for users to do a few things (such as manually create a new instance of a conversation) that the Intercom's UI doesn't allot for. 
+
+To use the app, simply download and start the app, upon which you will be asked to supply an Access Token. **Until you submit a valid access token, the app will not work**. 
+
+Once you access token is submitted, you now have full access to the features of the app. 
+
+
+
+
+## Electon Quick Start (Which I used to Skeleton) Below:
+
 # electron-quick-start
 
 **Clone and run for a quick way to see Electron in action.**
