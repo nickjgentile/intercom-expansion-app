@@ -10,7 +10,7 @@ window.createTick = function(idval, apiKey) {
 
 ipcRenderer.on('TICKET_CREATED', (event, res) => {
     console.log(res)
-    var resmessage = `<h3 class="green">SUCCESS!</h3> 
+    var resmessage = `<h4 class="green">SUCCESS!</h4> 
     <p>You created a new ticket for a user. See details below</p>
     <p>
     <strong class="successjson">Type:</strong> ${res.type}, <br/>
@@ -24,8 +24,8 @@ ipcRenderer.on('TICKET_CREATED', (event, res) => {
 
 ipcRenderer.on('TICKET_CREATE_FAILED', (event, err) => {
     console.log(err)
-    var resmessage = `<h3 class="red">FAILURE!</h3> 
-    <p>You submitted an invalid userID, or do not have access to post users. See details below and check to make sure that you're using a valid Access Token.</p>
+    var resmessage = `<h4 class="red">Something Went Wrong.</h4> 
+    <p>You submitted an invalid UserID, or do not have access to post users. See details below and check to make sure that you're using a valid Access Token.</p>
     <p>${err}</p>`
     document.getElementById('ticketCreateSpin').style.display = "none";
     document.getElementById('response').innerHTML = resmessage;

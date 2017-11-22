@@ -53,7 +53,6 @@
                     .find({ user_id: uid })
                     .then(function (r) {
                         $scope.selectedUser = r.body
-                        console.log($scope.selectedUser)
 
                         $scope.modalload = false;
                         $scope.contentReady = true;

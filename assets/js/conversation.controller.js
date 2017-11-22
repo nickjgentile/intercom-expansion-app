@@ -99,7 +99,6 @@
                 })
 
                 function display() {
-                    console.log(page)
                     for (let i = 1; i <= page; i++) {
                         client.users.listBy({ per_page: 60, page: i }).then(function (r) {
                             r.body.users.forEach(user => {
@@ -108,7 +107,6 @@
                         })
                         $scope.userGrab = userList
                     }
-                    console.log($scope.userGrab);
                 }
                 $scope.listConvs()
             }
@@ -117,7 +115,6 @@
                 var allConvs = [];
                 var promises = [];
 
-                console.log('here')
 
 
                 // push all api calls to get each page of conversations into promises array
